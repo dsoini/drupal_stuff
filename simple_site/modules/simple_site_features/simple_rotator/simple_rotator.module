@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Simple rotator feature.
+ */
+
+include_once 'simple_rotator.features.inc';

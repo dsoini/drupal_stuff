@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the simple_blocks feature.
+ */
+
+include_once 'simple_blocks.features.inc';

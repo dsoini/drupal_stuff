@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the simple_auto_submenu module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * @ingroup simple_auto_submenu
+ */
+function simple_auto_submenu_install() {
+  variable_set('administer simple_auto_submenu', '1');
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * @ingroup simple_auto_submenu
+ */
+function simple_auto_submenu_uninstall() {
+  variable_del('administer simple_auto_submenu');
+}

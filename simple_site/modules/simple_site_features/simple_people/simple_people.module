@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Simple people feature.
+ */
+
+include_once 'simple_people.features.inc';

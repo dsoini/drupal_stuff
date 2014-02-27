@@ -1,0 +1,133 @@
+; Packaging information for simple_site
+name = "simple_site"
+description = "Simple Center Site that Peter likes"
+exclusive = "1"
+core = "7.x"
+; ----------
+; Dependencies
+; ----------
+; Administration
+dependencies[] = module_filter
+dependencies[] = admin_menu
+dependencies[] = boost
+dependencies[] = httprl
+; Chaos tool suite
+dependencies[] = ctools
+dependencies[] = page_manager
+dependencies[] = views_content
+; Context
+dependencies[] = context
+dependencies[] = context_layouts
+dependencies[] = context_ui
+; Core
+dependencies[] = block
+dependencies[] = color
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dashboard
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_sql_storage
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = node
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = php
+dependencies[] = rdf
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = system
+dependencies[] = taxonomy
+dependencies[] = text
+; dependencies[] = toolbar
+dependencies[] = user
+; Date/Time
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = date_views
+; Fields
+dependencies[] = filefield_paths
+dependencies[] = link
+; Input filters
+dependencies[] = pathologic
+dependencies[] = spamspan
+; LDAP
+dependencies[] = simple_ldap
+; Media
+dependencies[] = file_entity
+dependencies[] = imce
+dependencies[] = media
+; Nodexport
+dependencies[] = node_export
+; Nodequeue
+dependencies[] = nodequeue
+; Other
+dependencies[] = admin_views
+dependencies[] = auto_nodetitle
+dependencies[] = backup_migrate
+dependencies[] = block_class
+dependencies[] = delta
+dependencies[] = draggableviews
+dependencies[] = flexslider
+dependencies[] = fontyourface
+dependencies[] = jquery_update
+dependencies[] = libraries
+dependencies[] = menu_admin_per_menu
+dependencies[] = override_node_options
+dependencies[] = nodeblock
+dependencies[] = node_level_blocks
+dependencies[] = pathauto
+dependencies[] = protected_pages
+dependencies[] = responsive_menus
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = userprotect
+; Panels
+dependencies[] = panels
+dependencies[] = panels_ipe
+dependencies[] = panels_node
+; Path management
+dependencies[] = globalredirect
+; SEO
+dependencies[] = page_title
+; dependencies[] = google_analytics
+; Spam control
+; dependencies[] = badbehavior
+dependencies[] = captcha
+dependencies[] = recaptcha
+; User interface
+dependencies[] = imce_wysiwyg
+dependencies[] = nice_menus
+dependencies[] = responsive_menus
+dependencies[] = wysiwyg
+; Views
+dependencies[] = views
+dependencies[] = views_ui
+; Webform
+dependencies[] = webform
+; XML sitemap
+dependencies[] = xmlsitemap
+dependencies[] = xmlsitemap_menu
+dependencies[] = xmlsitemap_node
+; Features
+dependencies[] = features
+dependencies[] = fe_block
+dependencies[] = fe_nodequeue
+dependencies[] = uuid
+; Custom
+dependencies[] = simple_blocks
+; dependencies[] = simple_events
+; dependencies[] = simple_news
+; dependencies[] = simple_people
+dependencies[] = simple_rotator
+dependencies[] = simple_wysiwyg_profile
+dependencies[] = simple_wysiwyg_mods
+; dependencies[] = simple_content_manager_role

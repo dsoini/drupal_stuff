@@ -1,0 +1,7 @@
+name = Simple WYSIWYG Mods
+description = Hides buttons from non-admins but you have to modify the module to work with your theme
+package = Simple Site
+core = 7.x
+dependencies[] = wysiwyg
+
+

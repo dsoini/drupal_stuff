@@ -1,0 +1,202 @@
+<?php
+/**
+ * @file
+ * Module file for simple_auto_submenu.
+ */
+
+/**
+ * @defgroup simple_auto_submenu Example: Block
+ * @ingroup custom
+ * @{
+ * Demonstrates code creation of blocks.
+ *
+ * This is an example outlining how a module can define blocks that can be
+ * displayed on various pages of a site, or how to alter blocks provided by
+ * other modules.
+ */
+ 
+
+
+ /**
+ * Implements hook_help().
+ *
+ * Through hook_help(), a module can make documentation available to the user
+ * for the module as a whole or for specific paths. Where the help appears
+ * depends on the $path specified.
+ *
+ * In the first example below, the help text will appear on the simple page
+ * defined in hook_menu below in the region designated for help text.
+ *
+ * In the second example, the text will be available through the module page as
+ * a link beside the module or on the admin help page (admin/help) in the list
+ * of help topics using the name of the module. To specify help in the admin
+ * section use the module name in the path as in the second case below.
+ *
+ * @see hook_help()
+ */
+function simple_auto_submenu_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#simple_auto_submenu':
+      // Help text for the help page
+      return t('The Simple Auto Submenu module provides a block that displays the child menu items of the current page\'s parent menu item. The block is listed as "Simple Auto Submenu" on <a href="@url">the block admin page</a>.', array('@url' => url('admin/structure/block')));
+      break;
+  }
+}
+
+
+/**
+ * Implements hook_permission().
+ */
+function simple_auto_submenu_permission() {
+  return array(
+    'administer simple_auto_submenu' => array(
+      'title' => t('Administer Simple Auto Submenu'), 
+      'description' => t('Change the settings for Simple Auto Submenu.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function simple_auto_submenu_menu() {
+  $items['admin/config/user-interface/simple_auto_submenu'] = array(
+    'title' => 'Simple Auto Submenu',
+    'description' => 'Configure Simple Auto Submenu quantity of menu blocks',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('simple_auto_submenu_admin_settings'),
+    'access arguments' => array('administer site configuration')
+  );
+  return $items;
+}
+
+/**
+ * Module settings form.
+ */
+function simple_auto_submenu_admin_settings() {
+  $form['simple_auto_submenu_number'] = array(
+    '#type' => 'select',
+    '#title' => t('Number of blocks'),
+    '#multiple' => FALSE,
+    '#options' => drupal_map_assoc(range(1, 50)),
+    '#description' => t('The number of Simple Auto Submenu menu blocks.'),
+    '#default_value' => variable_get('simple_auto_submenu_number', 1),
+  );
+  $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Save configuration'));
+  return system_settings_form($form, FALSE);
+}
+ 
+ 
+/**
+ * Implements hook_block_info().
+ *
+ * This hook declares what blocks are provided by the module.
+ */
+function simple_auto_submenu_block_info() {
+  $number = variable_get('simple_auto_submenu_number', 1);
+  for ($i = 1; $i <= $number; $i++) {
+	$blocks[$i] = array(
+        'info' => variable_get('simple_auto_submenu_name_' . $i, 'Simple Auto Submenu '.$i),
+		'status' => FALSE,
+        'cache' => DRUPAL_NO_CACHE,
+	);
+  }
+  return $blocks;
+}
+
+/**/
+function simple_auto_submenu_get_options_array($delta) {
+  return array(
+  	 'menu_choice_'.$delta => variable_get('menu_choice_'.$delta, '1')
+	);
+}
+
+/**
+ * Form submission handler for hook_configuration_form().
+ */
+function simple_auto_submenu_form_validate($form, &$form_state) {
+  $delta = $form_state['values']['delta'];
+  // Sanitize the Taxonomy ID option.
+  $form_state['values']['menu_choice_'.$delta] = filter_xss($form_state['values']['menu_choice_'.$delta], array());
+}
+
+
+/**
+ * Implements hook_block_configure().
+ *
+ * This hook declares configuration options for blocks provided by this module.
+*/
+function simple_auto_submenu_block_configure($delta = 0) {
+  $current_options_array = simple_auto_submenu_get_options_array($delta);
+  // Create the variables related to taxonomy choice. Default is tags.
+  $menu_choice = $current_options_array['menu_choice_' . $delta];
+  $menus = menu_get_names();
+  $menu_options = array();
+  foreach ($menus as $item) {
+	$key = $item;
+  	$value = $item;
+  	$menu_options[$key] = t('%menuname', array('%menuname' => $value));
+  }
+  $form = array();
+  $form['simple_auto_submenu_name_' . $delta] = array(
+    '#type' => 'textfield',
+    '#title' => t('Block Name (so you can find it on the blocks admin page)'),
+    '#default_value' => variable_get('simple_auto_submenu_name_' . $delta, 'Simple Auto Submenu ' . $delta),
+  );
+  $form['options']['menu_choice_' . $delta] = array(
+    '#options' => $menu_options,
+    '#default_value' => $menu_choice,
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#title' => t("Choose a menu:")
+  );
+  return $form;
+}
+
+
+/**
+ * Implements hook_block_save().
+ *
+ * This hook declares how the configured options for a block
+ * provided by this module are saved.
+ */
+function simple_auto_submenu_block_save($delta = 0, $edit = array()) {
+  // Have Drupal save the string to the database.
+  variable_set('menu_choice_'.$delta, $edit['menu_choice_'.$delta]);
+  // Have Drupal save the string to the database.
+  variable_set('simple_auto_submenu_name_'.$delta, $edit['simple_auto_submenu_name_'.$delta]);
+  return;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks themselves.
+ */
+function simple_auto_submenu_block_view($delta = 0) {
+    $menu_choice = simple_auto_submenu_get_options_array($delta);
+	$menu_choice = $menu_choice['menu_choice_'.$delta];
+    $menus = menu_tree_page_data($menu_choice, NULL, TRUE);
+	$menu_heading = '';
+	$menu = null;
+	$menu_available = false;
+	$block = '';
+	foreach($menus as $menu) {  
+	  if($menu['link']['in_active_trail'] && !empty($menu['below']) ){
+		$menu_available = true;
+		$menu_heading = '<h2>'.$menu['link']['link_title'].'</h2>';
+		$menu = $menu['below'];
+		break;
+	  }
+	}
+	if($menu_available){
+       $block['subject'] = t($menu_heading);
+       $block['content'] = menu_tree_output($menu);
+	}
+  return $block;
+}
+
+
+/**
+ * @} End of "defgroup simple_auto_submenu".
+ */

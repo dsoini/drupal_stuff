@@ -1,0 +1,14 @@
+name = simple_wysiwyg_profile
+core = 7.x
+package = Simple Site
+version = 7.x-1.0
+project = simple_wysiwyg_profile
+dependencies[] = features
+dependencies[] = filter
+dependencies[] = media
+dependencies[] = spamspan
+dependencies[] = pathologic
+dependencies[] = wysiwyg
+features[features_api][] = api:2
+features[filter][] = basic_html
+features[wysiwyg][] = basic_html
