@@ -1,0 +1,105 @@
+/* This file will hold styles for the mobile version of your website (mobile first). */
+/* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
+body {
+}
+
+/* CONTAINERS */
+#page {
+   outline:solid 1px red; 
+}
+
+/* generic containers */
+.zone-wrapper {}
+.zone {}
+.region {}
+
+/* User Zone */
+#zone-user-wrapper { background: red; } 
+#zone-user {}
+#region-user-first {}
+#region-user-second {}
+
+/* Branding Zone */
+#zone-branding-wrapper { background: orange; }  
+#zone-branding {}
+#region-branding {}
+
+/* Menu Zone */
+#zone-menu-wrapper { background: yellow; }  
+#zone-menu {}
+#region-menu {}
+
+/* Header Zone */
+#zone-header-wrapper { background: green; } 
+#zone-header {}
+#region-header-first {}
+#region-header-second {}
+
+/* Preface Zone */
+#zone-preface-wrapper { background: blue; } 
+#zone-preface {}
+#region-preface-first {}
+#region-preface-second {}
+#region-preface-third {}
+
+/* Content Zone */
+#zone-content-wrapper { background: purple; }  
+#zone-content {}
+#region-sidebar-first {}
+#region-content {}
+#region-sidebar-second {}
+
+/* Below Content Zone */
+#zone-below-content-wrapper { background: red; } 
+#zone-below-content {}
+#region-below-content-first {}
+#region-below-content-second {}
+#region-below-content-third {}
+
+
+/* Postscript Zone */
+#zone-postscript-wrapper { background: orange; } 
+#zone-postscript {}
+#region-postscript-first {}
+#region-postscript-second {}
+#region-postscript-third {}
+#region-postscript-fourth {}
+
+/* Footer Zone */
+#zone-footer-wrapper { background: yellow; } 
+#zone-footer {}
+#region-footer-first {}
+#region-footer-second {}
+
+/* INSIDE CONTAINERS */
+
+/* User Zone */
+
+/* Branding Zone */
+.branding-data {}
+.logo-img {}
+.site-name-slogan {}
+h1.site-name {}
+
+/* Menu Zone */
+ul#main-menu {} /* also .main-menu */
+ul#main-menu li.first {}
+ul#main-menu li.last {}
+ul#main-menu li.active {}
+ul#main-menu li a {}
+ul#main-menu li a.active {}
+
+/* Header Zone */
+
+/* Preface Zone */
+
+/* Content Zone */
+#region-content h1#page-title.title {}
+
+/* Below Content Zone */
+
+
+/* Postscript Zone */
+
+
+/* Footer Zone */

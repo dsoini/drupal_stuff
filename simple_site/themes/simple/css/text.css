@@ -1,0 +1,98 @@
+
+/* stolen from omega-text.css */
+body {
+    background:#fff;
+    color:#000; 
+    font-size:100%;
+}
+
+a:link, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 1px;
+  background: #000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+/* Make site titles the same size if it's an H1 (home) or H2 (internal) */
+h1.site-name,
+h2.site-name {
+  font-size: 2em;
+}
+
+/* Make it a bit smaller for block headers */
+h2.block-title {
+  font-size: 1.5em;
+  margin: 0;	
+}
+
+h2.node-title {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+
+h1 a:link, 
+h1 a:visited, 
+h2 a:link, 
+h2 a:visited, 
+h3 a:link, 
+h3 a:visited, 
+h4 a:link, 
+h4 a:visited, 
+h5 a:link, 
+h5 a:visited, 
+h6 a:link, 
+h6 a:visited {
+    color:#000;
+}
+
+ol {
+  list-style: decimal;
+}
+
+ul {
+  list-style: disc;
+}
