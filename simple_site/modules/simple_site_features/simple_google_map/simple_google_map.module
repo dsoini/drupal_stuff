@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Simple google map feature.
+ */
+
+include_once 'simple_google_map.features.inc';

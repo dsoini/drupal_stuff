@@ -1,0 +1,8 @@
+name = Google Map Field Extra
+description = Modifies the default theme for the output of Google Map Field, puts title in an h3 tag and adds a link to google map
+core = 7.x
+package = simple_site_features
+version = 7.x-1.0
+project = google_map_field_extra
+dependencies[] = google_map_field
+

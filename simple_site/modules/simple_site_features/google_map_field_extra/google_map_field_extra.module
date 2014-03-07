@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+
+/**
+ * Implements hook_theme().
+ */
+function google_map_field_extra_preprocess_google_map_field(&$vars){
+    $vars['name'] = '<h3>'.$vars['name'].'</h3>';
+        if (arg(0) == 'node' && is_numeric(arg(1))) $nodeid = arg(1);
+        $node = node_load($nodeid);
+        variable_set('gm_zoom', $node->field_google_map['und'][0]['zoom']);
+        variable_set('gm_lat', $node->field_google_map['und'][0]['lat']);
+        variable_set('gm_lon', $node->field_google_map['und'][0]['lon']);
+        variable_set('gm_name', $node->field_google_map['und'][0]['name']);
+        variable_set('gm_height', $node->field_google_map['und'][0]['map_height']);
+        variable_set('gm_width', $node->field_google_map['und'][0]['map_width']);
+        $gm_lat = variable_get('gm_lat');
+        $gm_lon = variable_get('gm_lon');
+        $gm_zoom = variable_get('gm_zoom');
+        $gm_width = variable_get('gm_width',600);
+        $gm_height = variable_get('gm_height',600);
+        $gm_name = variable_get('gm_name');
+        $gm_map_link = '<p class="maplink"><a href="http://maps.google.com/maps?z='.$gm_zoom.'&t=m&q=loc:'.
+        $gm_lat.'+'.$gm_lon.'&output=classic&dg=opt" target="_blank">View Larger Map</a></p>';
+        $vars['name'] .= $gm_map_link;
+}
+
+?>
